@@ -13,12 +13,21 @@ function split(wholeArray) {
   let firstPointer = 0;
   let secondPointer = 0;
 
-  while (secondPointer + firstPointer !== firstArray.length + secondArray.length) {
+  while (firstPointer < firstArray.length && secondPointer < secondArray.length) {
     if (firstArray[firstPointer] < secondArray[secondPointer]) {
       sortedArray.push(firstArray[firstPointer++]);
     } else {
       sortedArray.push(secondArray[secondPointer++]);
     }
+  }
+
+  while (firstPointer < firstArray.length) {
+    sortedArray.push(firstArray[firstPointer]);
+    firstPointer++
+  }
+  while (secondPointer < secondArray.length) {
+    sortedArray.push(secondArray[secondPointer]);
+    secondPointer++
   }
   return sortedArray;
  }
@@ -29,9 +38,8 @@ function split(wholeArray) {
     return array;
   }
   else {
-    //debugger;
+    debugger;
     let left = split(array)[0];
-    console.log(left);
     let right = split(array)[1];
     return merge(mergeSort(left), mergeSort(right));
   }
